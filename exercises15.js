@@ -23,7 +23,7 @@ function groupAnimals(animals) {
         }
       }
     }
-    return result
+    return result 
  }
  // TEST CASES
  console.log(groupAnimals(['cacing', 'ayam', 'kuda', 'anoa', 'kancil']));
