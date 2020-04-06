@@ -1,21 +1,32 @@
 function groupAnimals(animals) {
-    var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-    var groupHwn = [];
-    for(var i = 0; i < alphabet.length; i++){
-        var hwn=[];
-        for(var j = 0; j < animals.length; j++){
-            if (animals[j][0] == alphabet[i]) {
-                hwn.push(animals[j]);
-            }
+    var result = []
+    for(i=0; i<animals.length; i++){
+      var check= false
+      for(j=0; j<result.length; j++){
+        //console.log(result[j][0][0])
+        if(result[j][0][0] === animals[i][0]){
+          result[j].push(animals[i])
+          check = true
         }
-        if (hwn != '') {
-            groupHwn.push(hwn)
-        }
+      }
+      if(check === false){
+        result.push([animals[i]])
+      }
+      //console.log(i)
     }
-    return groupHwn
-}
-// TEST CASES
-console.log(groupAnimals(['cacing', 'ayam', 'kuda', 'anoa', 'kancil']));
-// [ ['ayam', 'anoa'], ['cacing'], ['kuda', 'kancil'] ]
-console.log(groupAnimals(['cacing', 'ayam', 'kuda', 'anoa', 'kancil', 'unta', 'cicak']));
+    for(i=0; i<result.length; i++){
+      for(j=i+1; j< result.length; j++){
+        if(result[i][0][0] > result[j][0][0]){
+          var temp= result[i]
+          result[i] = result[j]
+          result[j] = temp
+        }
+      }
+    }
+    return result
+ }
+ // TEST CASES
+ console.log(groupAnimals(['cacing', 'ayam', 'kuda', 'anoa', 'kancil']));
+ // [ ['ayam', 'anoa'], ['cacing'], ['kuda', 'kancil'] ]
+ console.log(groupAnimals(['cacing', 'ayam', 'kuda', 'anoa', 'kancil', 'unta', 'cicak']));
 // [ ['ayam', 'anoa'], ['cacing', 'cicak'], ['kuda', 'kancil'], ['unta'] ]
